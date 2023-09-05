@@ -6,13 +6,17 @@ import main.exception.AccountException;
 import main.persistance.entity.Account;
 import main.persistance.entity.Transaction;
 import main.persistance.repository.AccountRepository;
+import main.service.PinService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransaferTransactionResolver extends AbstractTransactionResolver {
+public class TransferTransactionResolver extends AbstractTransactionResolver {
 
-    public TransaferTransactionResolver(AccountRepository accountRepository) {
+    private final PinService pinService;
+
+    public TransferTransactionResolver(AccountRepository accountRepository, PinService pinService) {
         super(accountRepository);
+        this.pinService = pinService;
     }
 
     @Override
@@ -26,6 +30,9 @@ public class TransaferTransactionResolver extends AbstractTransactionResolver {
         Account accountTransferTo = getAccount(request.getAccountTransferTo());
         if (account.getValue().doubleValue() < request.getValue().doubleValue()) {
             throw new AccountException("Account didn't have enough money to withdraw");
+        }
+        if(pinService.isPinCorrect(request.getPin(), account.getPin())) {
+            throw new AccountException("Pin incorrect");
         }
         account.minusValue(request.getValue());
         accountTransferTo.addValue(request.getValue());

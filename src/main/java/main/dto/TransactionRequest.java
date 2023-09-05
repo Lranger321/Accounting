@@ -13,5 +13,6 @@ public class TransactionRequest {
 
     private String account;
     private String accountTransferTo;
+    private String pin;
     private BigDecimal value;
 }
