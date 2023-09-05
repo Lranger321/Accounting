@@ -1,23 +1,26 @@
 package main.persistance.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Builder
-@Data
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
 public class Account extends AbstractEntity {
 
-    private UUID id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "account_number", nullable = false)
     private String accountNumber;
+
+    @Column(name = "pin", nullable = false)
     private String pin;
 }

@@ -1,21 +1,36 @@
 package main.persistance.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import main.dto.TransactionType;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Builder
-@Data
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
 public class Transaction extends AbstractEntity {
 
-    private Account from;
-    private Account to;
+    @ManyToOne
+    private Account accountFrom;
+
+    @ManyToOne
+    private Account accountTo;
+
+    @Column(name = "value", nullable = false)
     private BigDecimal value;
+
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TransactionStatus status;
+
+    @Column(name = "error")
+    private String error;
 }
