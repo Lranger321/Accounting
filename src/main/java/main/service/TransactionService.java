@@ -32,6 +32,6 @@ public class TransactionService {
     @Transactional
     public TransactionInfo resolveTransaction(TransactionRequest transactionRequest, TransactionType type) {
         Transaction transaction = resolverMap.get(type).resolveTransaction(transactionRequest);
-        return transactionMapper.toTransactionInfo(transaction);
+        return transactionMapper.toTransactionInfo(repository.save(transaction));
     }
 }

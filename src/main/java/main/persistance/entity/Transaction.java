@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 public class Transaction extends AbstractEntity {
 
     @ManyToOne
-    private Account accountFrom;
+    private Account account;
 
     @ManyToOne
-    private Account accountTo;
+    private Account accountTransferTo;
 
     @Column(name = "value", nullable = false)
     private BigDecimal value;
