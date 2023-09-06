@@ -1,4 +1,15 @@
-﻿# Accounting API:
+﻿# Accounting:
+
+## Stack :
+```
+Spring Boot, PostgreSQL, Redis, JUnit, Liqubase
+
+Clean Architecture
+
+Proxy, Repositories
+```
+
+# API: 
 
 ## Get accounts
 
@@ -48,8 +59,8 @@ POST /api/accounts/
 
 `value` - how much money have user on this account
 
-```
 ## Make deposit transaction
+
 ```http
 POST /api/transactions/deposit
 ```
@@ -134,7 +145,6 @@ POST /api/transactions/withdraw
 
 `error` - error string, if transaction status is fail
 
-```
 ## Make transfer transaction
 ```http
 POST /api/transactions/transfer
