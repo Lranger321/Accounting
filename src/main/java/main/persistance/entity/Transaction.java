@@ -1,7 +1,6 @@
 package main.persistance.entity;
 
 import lombok.*;
-import main.dto.TransactionType;
 
 import javax.persistence.*;
 import java.io.Serializable;

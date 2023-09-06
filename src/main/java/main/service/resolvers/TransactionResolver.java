@@ -1,9 +1,8 @@
 package main.service.resolvers;
 
-import main.dto.TransactionInfo;
 import main.dto.TransactionRequest;
-import main.dto.TransactionType;
 import main.persistance.entity.Transaction;
+import main.persistance.entity.TransactionType;
 
 public interface TransactionResolver {
 

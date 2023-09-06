@@ -1,7 +1,6 @@
 package main.persistance.repository.impl.memory;
 
 import main.persistance.entity.Account;
-import main.persistance.entity.cached.AccountCached;
 import main.persistance.repository.AccountRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;

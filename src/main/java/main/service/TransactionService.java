@@ -2,7 +2,7 @@ package main.service;
 
 import main.dto.TransactionInfo;
 import main.dto.TransactionRequest;
-import main.dto.TransactionType;
+import main.persistance.entity.TransactionType;
 import main.persistance.entity.Transaction;
 import main.persistance.repository.TransactionRepository;
 import main.service.mapper.TransactionMapper;

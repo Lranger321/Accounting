@@ -1,4 +1,4 @@
-package main.dto;
+package main.persistance.entity;
 
 public enum TransactionType {
     DEPOSIT,

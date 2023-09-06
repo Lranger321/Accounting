@@ -13,7 +13,7 @@ public class PinService {
     }
 
     public boolean isPinCorrect(String pin, String secretPin) {
-        if(pin == null) {
+        if (pin == null) {
             return false;
         }
         return getSecretPin(pin).equals(secretPin);

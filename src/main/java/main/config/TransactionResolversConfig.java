@@ -1,6 +1,6 @@
 package main.config;
 
-import main.dto.TransactionType;
+import main.persistance.entity.TransactionType;
 import main.service.resolvers.TransactionResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

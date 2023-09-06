@@ -2,7 +2,6 @@ package main.persistance.repository.impl.jpa;
 
 import main.persistance.entity.Account;
 import main.persistance.repository.AccountRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

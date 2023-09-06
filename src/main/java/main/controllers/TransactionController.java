@@ -2,7 +2,7 @@ package main.controllers;
 
 import main.dto.TransactionInfo;
 import main.dto.TransactionRequest;
-import main.dto.TransactionType;
+import main.persistance.entity.TransactionType;
 import main.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
