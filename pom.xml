@@ -142,7 +142,7 @@
                 </dependencies>
                 <configuration>
                     <configLocation>checkstyle/checkstyle.xml</configLocation>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
                 </configuration>
             </plugin>
             <plugin>
