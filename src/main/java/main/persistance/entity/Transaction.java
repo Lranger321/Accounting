@@ -4,6 +4,7 @@ import lombok.*;
 import main.dto.TransactionType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Table(name = "transactions")
-public class Transaction {
+public class Transaction implements Serializable {
 
     @Id
     @GeneratedValue

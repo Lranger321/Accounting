@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+@Repository("JPAAccountRepository")
 public interface JPAAccountRepository extends AccountRepository, CrudRepository<Account, UUID> {
 
     List<Account> findAllByName(String name);

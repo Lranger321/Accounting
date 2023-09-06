@@ -2,8 +2,10 @@ package main.persistance.entity;
 
 
 import lombok.*;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -14,7 +16,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Table(name = "accounts")
-public class Account {
+public class Account implements Serializable{
 
     @Id
     @GeneratedValue

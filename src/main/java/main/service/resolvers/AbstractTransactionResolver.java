@@ -8,8 +8,8 @@ import main.persistance.entity.TransactionStatus;
 import main.persistance.repository.AccountRepository;
 import main.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 public abstract class AbstractTransactionResolver implements TransactionResolver {
@@ -18,7 +18,8 @@ public abstract class AbstractTransactionResolver implements TransactionResolver
     private final DateService dateService;
 
     @Autowired
-    public AbstractTransactionResolver(AccountRepository accountRepository, DateService dateService) {
+    public AbstractTransactionResolver(@Qualifier("AccountCachedRepository") AccountRepository accountRepository,
+                                       DateService dateService) {
         this.accountRepository = accountRepository;
         this.dateService = dateService;
     }
@@ -35,11 +36,11 @@ public abstract class AbstractTransactionResolver implements TransactionResolver
     protected abstract Transaction resolve(TransactionRequest request);
 
     protected Account getAccount(String accountNumber) {
-        if(accountNumber == null) {
+        if (accountNumber == null) {
             throw new AccountNotFoundException("Account number is null");
         }
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
-        if(account.isPresent()) {
+        if (account.isPresent()) {
             return account.get();
         } else {
             throw new AccountNotFoundException("Account with account number <%s> not found", accountNumber);

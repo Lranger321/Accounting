@@ -9,6 +9,7 @@ import main.persistance.repository.AccountRepository;
 import main.service.DateService;
 import main.service.PinService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,8 @@ public class WithdrawTransactionResolver extends AbstractTransactionResolver {
     private final PinService pinService;
 
     @Autowired
-    public WithdrawTransactionResolver(AccountRepository accountRepository, DateService dateService, PinService pinService) {
+    public WithdrawTransactionResolver(@Qualifier("AccountCachedRepository") AccountRepository accountRepository,
+                                       DateService dateService, PinService pinService) {
         super(accountRepository, dateService);
         this.pinService = pinService;
     }

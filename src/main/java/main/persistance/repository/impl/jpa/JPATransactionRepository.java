@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+@Repository("JPATransactionRepository")
 public interface JPATransactionRepository extends TransactionRepository, JpaRepository<Transaction, UUID> {
 
     @Override

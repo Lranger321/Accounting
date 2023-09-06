@@ -8,6 +8,7 @@ import main.persistance.repository.TransactionRepository;
 import main.service.mapper.TransactionMapper;
 import main.service.resolvers.TransactionResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,7 +24,7 @@ public class TransactionService {
     private final Map<TransactionType, TransactionResolver> resolverMap;
 
     @Autowired
-    public TransactionService(TransactionRepository repository,
+    public TransactionService(@Qualifier("TransactionCachedRepository") TransactionRepository repository,
                               TransactionMapper transactionMapper,
                               Map<TransactionType, TransactionResolver> resolverMap) {
         this.repository = repository;

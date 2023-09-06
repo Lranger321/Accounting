@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface AccountRepository {
 
+    List<Account> findAll();
+
     List<Account> findAllByName(String name);
 
     Account save(Account account);

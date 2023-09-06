@@ -7,13 +7,15 @@ import main.persistance.entity.Transaction;
 import main.persistance.repository.AccountRepository;
 import main.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DepositTransactionResolver extends AbstractTransactionResolver {
 
     @Autowired
-    public DepositTransactionResolver(AccountRepository accountRepository, DateService dateService) {
+    public DepositTransactionResolver(@Qualifier("AccountCachedRepository") AccountRepository accountRepository,
+                                      DateService dateService) {
         super(accountRepository, dateService);
     }
 

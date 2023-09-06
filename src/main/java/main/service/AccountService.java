@@ -6,6 +6,7 @@ import main.persistance.entity.Account;
 import main.persistance.repository.AccountRepository;
 import main.service.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,8 +22,10 @@ public class AccountService {
     private final PinService pinService;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository, AccountMapper accountMapper,
-                          AccountNumberService accountNumberService, PinService pinService) {
+    public AccountService(@Qualifier("AccountCachedRepository") AccountRepository accountRepository,
+                          AccountMapper accountMapper,
+                          AccountNumberService accountNumberService,
+                          PinService pinService) {
         this.accountRepository = accountRepository;
         this.accountMapper = accountMapper;
         this.accountNumberService = accountNumberService;

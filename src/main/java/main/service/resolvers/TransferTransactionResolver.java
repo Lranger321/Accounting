@@ -8,6 +8,7 @@ import main.persistance.entity.Transaction;
 import main.persistance.repository.AccountRepository;
 import main.service.DateService;
 import main.service.PinService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,8 @@ public class TransferTransactionResolver extends AbstractTransactionResolver {
 
     private final PinService pinService;
 
-    public TransferTransactionResolver(AccountRepository accountRepository, DateService dateService, PinService pinService) {
+    public TransferTransactionResolver(@Qualifier("AccountCachedRepository") AccountRepository accountRepository,
+                                       DateService dateService, PinService pinService) {
         super(accountRepository, dateService);
         this.pinService = pinService;
     }
