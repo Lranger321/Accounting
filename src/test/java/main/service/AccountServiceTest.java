@@ -2,6 +2,7 @@ package main.service;
 
 import main.dto.AccountCreateRequest;
 import main.dto.AccountDTO;
+import main.exception.AccountException;
 import main.persistance.entity.Account;
 import main.persistance.repository.AccountRepository;
 import main.service.mapper.AccountMapper;
@@ -15,8 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -57,6 +57,12 @@ class AccountServiceTest {
                 () -> assertEquals(16, accountDTO.getAccountNumber().length())
         );
     }
+
+    @Test
+    void createAccount_exception() {
+        assertThrows(AccountException.class, () -> service.createAccount(new AccountCreateRequest("name", "pin")));
+    }
+
 
     @Test
     void findAll() {

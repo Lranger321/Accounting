@@ -2,6 +2,7 @@ package main.service;
 
 import main.dto.AccountCreateRequest;
 import main.dto.AccountDTO;
+import main.exception.AccountException;
 import main.persistance.entity.Account;
 import main.persistance.repository.AccountRepository;
 import main.service.mapper.AccountMapper;
@@ -33,6 +34,9 @@ public class AccountService {
     }
 
     public AccountDTO createAccount(AccountCreateRequest request) {
+        if(!pinService.isPinAvailable(request.getPin())) {
+            throw new AccountException("Pin is incorrect");
+        }
         Account account = Account.builder()
                 .name(request.getName())
                 .value(BigDecimal.ZERO)
