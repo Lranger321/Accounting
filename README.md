@@ -183,6 +183,27 @@ POST /api/transactions/transfer
 
 `error` - error string, if transaction status is fail
 
+## Get transactions
+
+```http
+GET /api/transactions/
+```
+
+| Parameter       | Type     | Description               |
+|:----------------|:---------|:--------------------------|
+| `accountNumber` | `string` | account number 16 symbols |
+
+### Response:
+
+```
+{
+    "accountNumber": "string",
+    "name": "string",
+    "value": "double"
+}
+
+```
+
 ## Status Codes
 
 | Status Code | Description             |
