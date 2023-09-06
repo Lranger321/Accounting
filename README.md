@@ -6,7 +6,7 @@ Spring Boot, PostgreSQL, Redis, JUnit, Liqubase
 
 Clean Architecture
 
-Proxy, Repositories
+Proxy, Repositories, Factory method, Strategy 
 ```
 
 # API: 
