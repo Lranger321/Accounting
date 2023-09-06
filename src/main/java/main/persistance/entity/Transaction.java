@@ -5,6 +5,8 @@ import main.dto.TransactionType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Builder
@@ -12,12 +14,18 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @NoArgsConstructor
-public class Transaction extends AbstractEntity {
+@Table(name = "transactions")
+public class Transaction {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @ManyToOne
     private Account account;
 
     @ManyToOne
+    @JoinColumn(name = "account_transfer_to")
     private Account accountTransferTo;
 
     @Column(name = "value", nullable = false)
@@ -33,4 +41,7 @@ public class Transaction extends AbstractEntity {
 
     @Column(name = "error")
     private String error;
+
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
 }

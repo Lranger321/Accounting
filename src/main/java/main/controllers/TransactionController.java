@@ -5,14 +5,13 @@ import main.dto.TransactionRequest;
 import main.dto.TransactionType;
 import main.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/transactions/")
 public class TransactionController {
 
     private final TransactionService service;
@@ -22,22 +21,22 @@ public class TransactionController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<TransactionInfo> getAllTransactions(String accountNumber) {
-        return null;
+        return service.findAll(accountNumber);
     }
 
-    @PostMapping
+    @PostMapping(value = "/withDraw", consumes = MediaType.APPLICATION_JSON_VALUE)
     public TransactionInfo withDraw(@RequestBody TransactionRequest request) {
         return service.resolveTransaction(request, TransactionType.WITHDRAW);
     }
 
-    @PostMapping
+    @PostMapping(value = "/deposit", consumes = MediaType.APPLICATION_JSON_VALUE)
     public TransactionInfo deposit(@RequestBody TransactionRequest request) {
         return service.resolveTransaction(request, TransactionType.DEPOSIT);
     }
 
-    @PostMapping
+    @PostMapping(value = "/transfer", consumes = MediaType.APPLICATION_JSON_VALUE)
     public TransactionInfo transfer(@RequestBody TransactionRequest request) {
         return service.resolveTransaction(request, TransactionType.TRANSFER);
     }

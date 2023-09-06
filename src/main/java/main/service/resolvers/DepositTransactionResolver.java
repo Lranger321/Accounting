@@ -5,6 +5,7 @@ import main.dto.TransactionType;
 import main.persistance.entity.Account;
 import main.persistance.entity.Transaction;
 import main.persistance.repository.AccountRepository;
+import main.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class DepositTransactionResolver extends AbstractTransactionResolver {
 
     @Autowired
-    public DepositTransactionResolver(AccountRepository accountRepository) {
-        super(accountRepository);
+    public DepositTransactionResolver(AccountRepository accountRepository, DateService dateService) {
+        super(accountRepository, dateService);
     }
 
     @Override

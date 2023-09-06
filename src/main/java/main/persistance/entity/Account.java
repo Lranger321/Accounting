@@ -3,9 +3,9 @@ package main.persistance.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Builder
@@ -13,8 +13,12 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @NoArgsConstructor
-public class Account extends AbstractEntity {
+@Table(name = "accounts")
+public class Account {
 
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -29,10 +33,10 @@ public class Account extends AbstractEntity {
     private BigDecimal value;
 
     public void addValue(BigDecimal value) {
-        this.value = value.add(value);
+        this.value = this.value.add(value);
     }
 
     public void minusValue(BigDecimal value) {
-        this.value = value.add(value.negate());
+        this.value = this.value.subtract(value);
     }
 }

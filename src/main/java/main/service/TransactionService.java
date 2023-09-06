@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -33,5 +35,11 @@ public class TransactionService {
     public TransactionInfo resolveTransaction(TransactionRequest transactionRequest, TransactionType type) {
         Transaction transaction = resolverMap.get(type).resolveTransaction(transactionRequest);
         return transactionMapper.toTransactionInfo(repository.save(transaction));
+    }
+
+    public List<TransactionInfo> findAll(String accountNumber) {
+        return repository.findAllByAccountNumber(accountNumber).stream()
+                .map(transactionMapper::toTransactionInfo)
+                .collect(Collectors.toList());
     }
 }

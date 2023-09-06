@@ -8,6 +8,7 @@ import main.service.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,8 @@ public class AccountService {
 
     public AccountDTO createAccount(AccountCreateRequest request) {
         Account account = Account.builder()
+                .name(request.getName())
+                .value(BigDecimal.ZERO)
                 .accountNumber(accountNumberService.createAccountNumber())
                 .pin(pinService.getSecretPin(request.getPin()))
                 .build();

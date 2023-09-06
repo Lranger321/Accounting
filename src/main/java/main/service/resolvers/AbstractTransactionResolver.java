@@ -6,18 +6,21 @@ import main.persistance.entity.Account;
 import main.persistance.entity.Transaction;
 import main.persistance.entity.TransactionStatus;
 import main.persistance.repository.AccountRepository;
-import main.service.AccountService;
+import main.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public abstract class AbstractTransactionResolver implements TransactionResolver {
 
     private final AccountRepository accountRepository;
+    private final DateService dateService;
 
     @Autowired
-    public AbstractTransactionResolver(AccountRepository accountRepository) {
+    public AbstractTransactionResolver(AccountRepository accountRepository, DateService dateService) {
         this.accountRepository = accountRepository;
+        this.dateService = dateService;
     }
 
     @Override
@@ -47,6 +50,7 @@ public abstract class AbstractTransactionResolver implements TransactionResolver
         return Transaction.builder()
                 .account(account)
                 .value(request.getValue())
+                .createdAt(dateService.getDate())
                 .status(TransactionStatus.SUCCESS)
                 .type(getType())
                 .build();
@@ -57,6 +61,7 @@ public abstract class AbstractTransactionResolver implements TransactionResolver
                 .account(account)
                 .value(request.getValue())
                 .error(e.getMessage())
+                .createdAt(dateService.getDate())
                 .status(TransactionStatus.FAILED)
                 .type(getType())
                 .build();
